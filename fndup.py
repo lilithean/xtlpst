@@ -4,6 +4,7 @@
 #from multiprocessing import Pool
 from subprocess import Popen, PIPE
 from datetime import datetime
+from shutil import copyfile
 import os
 import sys
 
@@ -39,11 +40,13 @@ if __name__ == "__main__":
     wdir = os.getcwd()
     plst = poslst(wdir)
     for tol in tollst:
+        print "="*30
         print "CMP TOL=%5s %5s" % tuple(tol)
+        print "%4i STR TO CMP" % len(plst)
         plst =  cmpfnc(plst, tol, iplst=[])
         print "%4i IDENTICAL STR" % len(plst)
-        #print plst
     tdir = chk_tmpdir()
+    print "="*30
     print "CP STR TO %10s" % tdir
     os.mkdir(tdir)
-        
+    (copyfile(x, os.path.join(tdir, x)) for x in plst)
