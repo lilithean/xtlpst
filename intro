@@ -1,0 +1,10 @@
+1. check results.txt: collect structures (1) that matches the requirement
+2. symmetrize (1) collected structures
+3. remove duplicates (1)
+4. optimize
+5. symmetrize (2) optimized structures
+6. remove duplicates (2)
+7. calculate eos
+8. check eos: collect structures (1) that matches the requirement
+9. calculate phonon
+10. calculate epc
