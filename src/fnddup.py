@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-# findup.py: this suppose to filter duplicate structures in 
+# fnddup.py: this suppose to filter duplicate structures in 
 # the same folder endwith "*.poscar"
-from multiprocessing import Pool, cpu_count
 from functools import partial
-from subprocess import Popen, PIPE
-import os
 from libxtlp import poslst, chk_tdir, cp_str
+from multiprocessing import Pool, cpu_count
+import os
+from subprocess import Popen, PIPE
 
 tollst = [['0.2', '0.4'], ['0.3', '0.6'], ['0.5', '0.8']]
 
@@ -18,7 +18,9 @@ def xtlcmp(pos2, pos1, tol):
 
 def cmpfnc(plst, tol, pool, iplst=[], cyc=0):
     print "IN CYC %4i: %4i STR TO CMP" % (cyc, len(plst))
-    if len(plst) <= 1:
+    if len(plst) == 0:
+        return iplst 
+    elif len(plst) == 1:
         iplst.append(plst[-1])
         return iplst
     else:
